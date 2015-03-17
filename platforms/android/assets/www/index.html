@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <title>Hello World</title>
+	 <script type="text/javascript" src="cordova.js"></script>
+ <script type="text/javascript" >
+	  document.addEventListener('deviceready', this.onDeviceReady, false);
+
+	  var database =null;
+    function  onDeviceReady() {
+     alert ("cordova carregou com sucesso");
+     database= window.openDatabase("Test","1.0","Testing Select", 200000);
+     database.transaction(PopulateDatabase,errorDB,successDB);
+
+    }
+    function PopulateDatabase(tx){
+	tx.executeSql("Create Table IF NOT EXISTS Test(ROLLNO INT, FistNmae texr, LastName text, MobileNome text)");
+	
+	tx.executeSql("Insert into Test values (1, 'sergio','reis', 31258)");
+	tx.executeSql("Insert into Test values (2, 'maria','carlos', 31258)");
+	tx.executeSql("Insert into Test values (3, 'joao','selau', 31258)");
+	tx.executeSql("Insert into Test values (4, 'beto','matos', 31258)");
+	tx.executeSql("Insert into Test values (5, 'sjames','silva', 31258)");
+	tx.executeSql("Insert into Test values (6, 'vitor','souza', 31258)");
+	tx.executeSql("Insert into Test values (7, 'sorocaba','santos', 31258)");	
+    }	
+    function  errorDB(error){
+	alert("error em data base creation: "+ error);
+    }
+        function  successDB(){
+	alert("bd criado com sucesso");
+    }
+    
+    
+	 </script>
+    </head>
+    <body>
+       
+       
+    </body>
+</html>
